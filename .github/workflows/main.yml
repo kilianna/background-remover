@@ -41,7 +41,7 @@ jobs:
             echo Compilation failed
             exit 1
           fi
-      - uses: actions/upload-artifact@v3.1.0
+      - uses: actions/upload-artifact@v4
         with:
           name: IJ Plugin win native lib
           path: ./src/*.dll
@@ -65,7 +65,7 @@ jobs:
             echo Compilation failed
             exit 1
           fi
-      - uses: actions/upload-artifact@v3.1.0
+      - uses: actions/upload-artifact@v4
         with:
           name: IJ Plugin mac native lib
           path: ./src/*.dylib
@@ -103,7 +103,7 @@ jobs:
         run: |
           ant -Dplatforms.JDK_1.8.home=$JAVA_HOME -noinput -buildfile build.xml
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: IJ Plugin
           path: ./dist/*.jar
