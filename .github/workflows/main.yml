@@ -92,11 +92,11 @@ jobs:
           name: IJ Plugin mac native lib
           path: ./src/
       - name: Delete Artifact
-        uses: GeekyEggo/delete-artifact@v2
+        uses: GeekyEggo/delete-artifact@v5
         with:
           name: IJ Plugin win native lib
       - name: Delete Artifact
-        uses: GeekyEggo/delete-artifact@v2
+        uses: GeekyEggo/delete-artifact@v5
         with:
           name: IJ Plugin mac native lib
       - name: Build the plugin
