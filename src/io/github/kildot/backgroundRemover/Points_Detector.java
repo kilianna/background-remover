@@ -1282,14 +1282,14 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         win.pack();
 
         // Create plot
-        plot = new Plot("Plot", "Neighbourhood", "Point");
+        plot = new Plot("Discrimination plot", "Mean object intensity", "Mean surrounding intensity");
         plot.setColor(Color.BLUE);
         plot.add("circle", new double[0], new double[0]);
         plot.savePlotObjects();
         plot.show();
 
         // Create Profile plot
-        profilePlot = new Plot("Profile", "Distance from pixel", "Average value");
+        profilePlot = new Plot("Pixel surrounding intensity profile", "Distance from pixel", "Mean surrounding intensity");
         profilePlot.add("line", new double[0], new double[0]);
         profilePlot.add("line", new double[0], new double[0]);
         profilePlot.add("line", new double[0], new double[0]);

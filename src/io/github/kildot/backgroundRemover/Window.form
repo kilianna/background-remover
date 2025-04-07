@@ -148,7 +148,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="labelParamW">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Scanning window radius [pixels]"/>
+            <Property name="text" type="java.lang.String" value="Scanning window radius [px]"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="windowRadiusText">
@@ -189,7 +189,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelParamW1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Point radius [pixels]"/>
+            <Property name="text" type="java.lang.String" value="Object radius [px]"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="backgroundStartRadiusText">
@@ -212,7 +212,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelParamW2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Background start radius [pixels]"/>
+            <Property name="text" type="java.lang.String" value="Background start radius [px]"/>
           </Properties>
         </Component>
       </SubComponents>

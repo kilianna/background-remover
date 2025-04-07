@@ -153,7 +153,7 @@ public class Window extends javax.swing.JFrame implements Params.Listener {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Preliminary parameters"));
         jPanel1.setName("nnn"); // NOI18N
 
-        labelParamW.setText("Scanning window radius [pixels]");
+        labelParamW.setText("Scanning window radius [px]");
 
         windowRadiusText.setText("20");
         windowRadiusText.setMinimumSize(new java.awt.Dimension(200, 24));
@@ -195,7 +195,7 @@ public class Window extends javax.swing.JFrame implements Params.Listener {
             }
         });
 
-        labelParamW1.setText("Point radius [pixels]");
+        labelParamW1.setText("Object radius [px]");
 
         backgroundStartRadiusText.setText("6");
         backgroundStartRadiusText.setMinimumSize(new java.awt.Dimension(200, 24));
@@ -217,7 +217,7 @@ public class Window extends javax.swing.JFrame implements Params.Listener {
             }
         });
 
-        labelParamW2.setText("Background start radius [pixels]");
+        labelParamW2.setText("Background start radius [px]");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
