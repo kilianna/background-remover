@@ -1282,7 +1282,7 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         win.pack();
 
         // Create plot
-        plot = new Plot("Discrimination plot", "Mean object intensity", "Mean surrounding intensity");
+        plot = new Plot("Discrimination plot", "Mean surrounding intensity", "Mean object intensity");
         plot.setColor(Color.BLUE);
         plot.add("circle", new double[0], new double[0]);
         plot.savePlotObjects();
