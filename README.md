@@ -1,9 +1,9 @@
-<a href="https://github.com/kildot/points-detector/actions/workflows/main.yml"><img src="https://github.com/kildot/points-detector/actions/workflows/main.yml/badge.svg" alt="Build" align="right"/></a>
+<a href="https://github.com/kilianna/background-remover/actions/workflows/main.yml"><img src="https://github.com/kilianna/background-remover/actions/workflows/main.yml/badge.svg" alt="Build" align="right"/></a>
 
-# Points Detector
+# Background Remover
 
-Download link: [`BackgroundRemover.jar`](https://github.com/kildot/points-detector/releases/latest/download/BackgroundRemover.jar)
+Download link: [`BackgroundRemover.jar`](https://github.com/kilianna/background-remover/releases/latest/download/BackgroundRemover.jar)
 
 Help link: [`Points Detector Help`](help/README.md)
 
-Lastest development version: [`BackgroundRemover.jar`](https://github.com/kildot/points-detector/raw/dev-binaries/BackgroundRemover.jar)
+Lastest development version: [`BackgroundRemover.jar`](https://github.com/kilianna/background-remover/raw/dev-binaries/BackgroundRemover.jar)
