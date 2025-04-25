@@ -1,4 +1,4 @@
-title: "Points detector"
+title: "Background Remover"
 description: "A plugin for point detecting in JI"
 markdown: kramdown
 remote_theme: pages-themes/dinky@v0.2.0
