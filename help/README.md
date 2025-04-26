@@ -116,7 +116,7 @@ Net signal parameters
 </p>
 
 <p align="center">
-<img alt="Background_ring" src="img/background_ring.PNG"/><br/>
+<img alt="Background_ring" src="img/Background_ring.png"/><br/>
 Net signal parameters explanation
 </p>
 
@@ -324,6 +324,7 @@ Intensity of points showing the degree of matching of signal points on black bac
 Net signal of points (using median) on black background preview
 <br/><br/><br/>
 </p>
+
 ### Profile plot window
 
 In manual mode, you can view histograms created for individual signals and background points marked on the graph. To do this, click the "Profile plot window" button in the upper left corner of the "Parameters" window. A new "Profiles" window will open. The graph displays the profiles of selected signal points in red (maximum 10) and the background profiles in blue (maximum 10 points). The light blue vertical line indicates the point from which the pixel's surroundings are counted. The maximum value on the X-axis corresponds to the size of the scanning window.
