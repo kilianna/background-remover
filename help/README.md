@@ -7,7 +7,7 @@ In order to use the microscope image processing toolkit for separating signal fr
 The file should be imported as a single image or a stack. The image (or stack) must be in a 16-bit grayscale. By default, the plugin is run for the active window.
 
 <p align="center">
-<img alt="main_window" src="img/main_window.PNG"/><br/>
+<img alt="main_window" src="img/main.PNG"/><br/>
 Main window
 </p>
 
@@ -15,7 +15,7 @@ Main window
 The program has two modes: automatic and manual. In automatic mode, we can enter predetermined parameters in individual fields or load a previously saved set of parameters (Preset). After clicking OK, the program automatically searches for points and opens a new window with the resulting image. We switch to manual mode using the "**Interactive parameters tuning**" button located in the upper left part of the window.
 
 <p align="center">
-<img alt="main_window_interactive" src="img/main_window_interactive.PNG"/><br/>
+<img alt="main_window_interactive" src="img/main_inter_param_tuning_button.PNG"/><br/>
 Interactive parameters tuning button
 </p>
 
@@ -42,7 +42,7 @@ The new preset can be created by selecting the **[ New ]** option from the **Pre
 To access a previously created preset, it can be selected from the **Presets** drop-down list. The existing preset can be updated while maintaining the changes made using the **Save** button. By selecting **[Recently used]** from the drop-down list, the most recently used preset will be loaded. The preset can be deleted using the **Delete** button.
 
 <p align="center">
-<img alt="Presets" src="img/presets.PNG"/><br/>
+<img alt="Presets" src="img/main_presets.PNG"/><br/>
 Presets list
 </p>
 
@@ -52,7 +52,7 @@ Preliminary parameters determine the size of the scanning window and the approxi
 
 
 <p align="center">
-<img alt="main_window_preliminary" src="img/main_window_preliminary.PNG"/><br/>
+<img alt="main_window_preliminary" src="img/main_preliminary_param.PNG"/><br/>
 Preliminary parameters section
 </p>
 
@@ -74,7 +74,7 @@ $$
 
 
 <p align="center">
-<img alt="main_window_line" src="img/main_window_line.PNG"/><br/>
+<img alt="main_window_line" src="img/main_disc_line_param.PNG"/><br/>
 Discrimination line parameters section
 </p>
 
@@ -84,7 +84,7 @@ If these parameters are not known, they should be established in manual mode.
 ### Output parameters
 
 <p align="center">
-<img alt="main_window_output" src="img/main_window_output.PNG"/><br/>
+<img alt="main_window_output" src="img/main_output_param.PNG"/><br/>
 Output parameters section
 </p>
 
@@ -100,7 +100,7 @@ Output parameters section
 
 
 <p align="center">
-<img alt="output_points" src="img/output_points.PNG"/><br/>
+<img alt="output_points" src="img/main_signal_param.PNG"/><br/>
 Signal points types list
 </p>
 
@@ -111,12 +111,12 @@ If one of the **Net signal** options is selected, two additional fields will app
 
 
 <p align="center">
-<img alt="net_signal_menu" src="img/net_signal_menu.PNG"/><br/>
+<img alt="net_signal_menu" src="img/main_take_skip.PNG"/><br/>
 Net signal parameters
 </p>
 
 <p align="center">
-<img alt="Background_ring" src="img/Background_ring.png"/><br/>
+<img alt="Background_ring" src="img/background_ring.PNG"/><br/>
 Net signal parameters explanation
 </p>
 
@@ -126,7 +126,7 @@ When one of the three versions of "Net signal" is selected, the "Scaled" option 
 
 <p align="center">
 <img alt="Net_vs_scaled" src="img/Net_vs_scaled.png"/><br/>
-Comparison of scaled and nonscaled images. From left: original, nonscaled and scaled image.
+Comparison of scaled and nonscaled images. From left: nonscaled and scaled image.
 </p>
 
 - **Background** - available background display options:
@@ -136,7 +136,7 @@ Comparison of scaled and nonscaled images. From left: original, nonscaled and sc
   - **Degree of matching** - pixel brightness corresponds to the difference between the "point brightness" calculated by the program and the "background brightness".
 
 <p align="center">
-<img alt="output_background" src="img/output_background.PNG"/><br/>
+<img alt="output_background" src="img/main_bg_param.PNG"/><br/>
 Background types list
 </p>
 
@@ -150,7 +150,7 @@ In manual mode, you can optimize input parameters and, most importantly, the dis
 
 
 <p align="center">
-<img alt="main_window_interactive" src="img/main_window_interactive.PNG"/><br/>
+<img alt="main_window_interactive" src="img/main_inter_param_tuning_button.PNG"/><br/>
 Interactive parameters mode button
 </p>
 
@@ -158,14 +158,14 @@ Interactive parameters mode button
 After pressing this button, plugin automatically goes to the manual mode menu and opens two additional windows: **Preview** and **Plot**.
 
 <p align="center">
-<img alt="menu_manual" src="img/menu_manual.PNG"/><br/>
+<img alt="menu_manual" src="img/main_manual.PNG"/><br/>
 Manual mode - main window
 </p>
 
 In the manual mode window, you will notice that the "**Interactive parameters tuning**" button has been replaced by the "**Profile plot window**" button, which opens an additional window displaying profiles for individual points. Furthermore, in the **Discrimination line parameters** section, there are additional options related to curve fitting (**Auto fitting**).
 
 <p align="center">
-<img alt=preview" src="img/preview.PNG"/><br/>
+<img alt="preview" src="img/preview.PNG"/><br/>
 Preview window
 </p>
 
@@ -175,7 +175,7 @@ The **Preview** window is a stack of two images. The first image shows a preview
 The **Plot** window initially contains only a chart template used to establish the discrimination line parameters.
 
 <p align="center">
-<img alt=plot_empty" src="img/plot_empty.PNG"/><br/>
+<img alt="plot_empty" src="img/plot_empty.PNG"/><br/>
 Empty plot window
 </p>
 
@@ -246,7 +246,7 @@ Signal points plotted on the graph (red points)
 In order to accurately define the boundary of objects, it is recommended to mark points near the edge of the object.
 
 <p align="center">
-<img alt=points_selection_zoom" src="img/points_selection_zoom.PNG"/><br/>
+<img alt="points_selection_zoom" src="img/points_selection_zoom.PNG"/><br/>
 Example of marking a point on the boundary of an object
 </p>
 
@@ -275,47 +275,46 @@ To enable automatic adjustment of discrimination line parameters, a minimum of 5
 
 <p align="center">
 <img alt=discrimination_line_below_points" src="img/dicrimination_line_below_points.PNG"/><br/>
-Discrimination line fitted using **Below points** button
+Discrimination line fitted using <b>Below points</b> button
 <br/><br/><br/>
 </p>
 
 <p align="center">
 <img alt=discrimination_line_middle" src="img/dicrimination_line_middle.PNG"/><br/>
-Discrimination line fitted using **Middle** button
+Discrimination line fitted using <b>Middle</b> button
 <br/><br/><br/>
 </p>
 
 <p align="center">
-<img alt=discrimination_line_above_noise" src="img/dicrimination_line_above_noise.PNG"/><br/>
-Discrimination line fitted using **Above noise** button
+<img alt="discrimination_line_above_noise" src="img/dicrimination_line_above_noise.PNG"/><br/>
+Discrimination line fitted using <b>Above noise</b> button
 <br/><br/><br/>
 </p>
-
 
 #### Determining the output parameters
 
 The last stage is to determine the output parameters. In particular, how signal points and background are displayed in the output image. Below are examples of different options for displaying the same resulting image. Particular attention should be paid to the fact that not all methods allow maintaining the nominal signal intensity.
 
 <p align="center">
-<img alt=BW_preview" src="img/BW_preview.PNG"/><br/>
+<img alt="BW_preview" src="img/BW_preview.PNG"/><br/>
 White points on black background preview
 <br/><br/><br/>
 </p>
 
 <p align="center">
-<img alt=WB_preview" src="img/WB_preview.PNG"/><br/>
+<img alt="WB_preview" src="img/WB_preview.PNG"/><br/>
 Black points on white background preview
 <br/><br/><br/>
 </p>
 
 <p align="center">
-<img alt=original_preview" src="img/orginal_preview.PNG"/><br/>
+<img alt="original_preview" src="img/orginal_preview.PNG"/><br/>
 The original intensity of signal points on the black background preview
 <br/><br/><br/>
 </p>
 
 <p align="center">
-<img alt=degree_of_matching_preview" src="img/degree_of_marching_preview.PNG"/><br/>
+<img alt="degree_of_matching_preview" src="img/degree_of_marching_preview.PNG"/><br/>
 Intensity of points showing the degree of matching of signal points on black background preview
 <br/><br/><br/>
 </p>
@@ -325,7 +324,6 @@ Intensity of points showing the degree of matching of signal points on black bac
 Net signal of points (using median) on black background preview
 <br/><br/><br/>
 </p>
-
 ### Profile plot window
 
 In manual mode, you can view histograms created for individual signals and background points marked on the graph. To do this, click the "Profile plot window" button in the upper left corner of the "Parameters" window. A new "Profiles" window will open. The graph displays the profiles of selected signal points in red (maximum 10) and the background profiles in blue (maximum 10 points). The light blue vertical line indicates the point from which the pixel's surroundings are counted. The maximum value on the X-axis corresponds to the size of the scanning window.
@@ -334,6 +332,6 @@ Detailed information on how these profiles are calculated can be found in the pu
 
 <p align="center">
 <img alt="plot_profile" src="img/plot_profile.PNG"/><br/>
-Example of profile window
+Example of Pixel surrounding intensity profile window
 <br/><br/><br/>
 </p>
