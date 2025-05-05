@@ -206,7 +206,7 @@ The default selection tool in ImageJ for choosing background areas is the oval t
 In the **Preview** window, you can select the background in both the original image and the preview image.
 
 <p align="center">
-<img alt=background_selection" src="img/background_selection.PNG"/><br/>
+<img alt="background_selection" src="img/background_selection.PNG"/><br/>
 Sample image with the selected background
 </p>
 
