@@ -213,12 +213,12 @@ Sample image with the selected background
 The chosen background points will be displayed on the plot in **Discrimination plot** window as blue circles.
 
 <p align="center">
-<img alt=background_selection_plot" src="img/background_selection_plot.PNG"/><br/>
+<img alt="background_selection_plot" src="img/background_selection_plot.PNG"/><br/>
 Background pixels plotted on the graph (blue points)
 </p>
 
 <p align="center">
-<img alt=background_plot_correlation" src="img/background_plot_correlation.PNG"/><br/>
+<img alt="background_plot_correlation" src="img/background_plot_correlation.PNG"/><br/>
 Background pixels selected in the image transferred to the chart
 </p>
 
@@ -230,14 +230,14 @@ To switch from background selection mode to point selection mode, click the **Po
 You can select points using the **Multi-Point** tool in ImageJ. After marking the points, you can move them using your mouse. To delete a selected point, hold down the left or right **ALT** key while clicking on it. Similar to background selection, points can be selected in both the original image and the preview.
 
 <p align="center">
-<img alt=points_selection" src="img/points_selection.PNG"/><br/>
+<img alt="points_selection" src="img/points_selection.PNG"/><br/>
 Sample image with the selected signal pixels
 </p>
 
 The graph in **Discrimination plot** window will show red circles that correspond to the selected points in the image. The numbers on the image will match those on the chart, allowing for any necessary adjustments.
 
 <p align="center">
-<img alt=points_selection_plot" src="img/points_selection_graph.PNG"/><br/>
+<img alt="points_selection_plot" src="img/points_selection_graph.PNG"/><br/>
 Signal pixels plotted on the graph (red points)
 </p>
 
@@ -272,13 +272,13 @@ The slope coefficient of the discrimination line can be fixed by checking the **
 To enable automatic adjustment of discrimination line parameters, a minimum of 5 signal points and 10 noise points must be marked on the graph. Additionally, the signal and noise points should be in similar **Mean surrounding intensity**. If the discrimination line cannot be automatically adjusted, the plugin will display an appropriate message.
 
 <p align="center">
-<img alt=discrimination_line_below_points" src="img/dicrimination_line_below_points.PNG"/><br/>
+<img alt="discrimination_line_below_points" src="img/dicrimination_line_below_points.PNG"/><br/>
 Discrimination line fitted using <b>Below points</b> button
 <br/><br/><br/>
 </p>
 
 <p align="center">
-<img alt=discrimination_line_middle" src="img/dicrimination_line_middle.PNG"/><br/>
+<img alt="discrimination_line_middle" src="img/dicrimination_line_middle.PNG"/><br/>
 Discrimination line fitted using <b>Middle</b> button
 <br/><br/><br/>
 </p>
@@ -323,7 +323,7 @@ Net signal of points (using median) on black background preview
 <br/><br/><br/>
 </p>
 
-### Profile plot window
+### Pixels surrounding intensity profile window
 
 In manual mode, you can view histograms for individual signals and background pixels that are marked on the graph. To access this feature, click the **Profile Plot Window** button located in the upper left corner of the **Parameters** window. A new **Pixels surrounding intensity profile** window will open, displaying the profiles of selected signal pixels in red (up to a maximum of 10) and the background profiles in blue (also up to 10 pixels). A light blue vertical line indicates the point from which the pixel's surroundings are measured. The maximum value on the X-axis represents the size of the scanning window.
 
