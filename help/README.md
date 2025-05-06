@@ -12,7 +12,7 @@ To use the microscope image processing plugin for separating signal from noise, 
 2. Place the downloaded file in the Plugins directory, which is located within the ImageJ or Fiji.app directory.
 3. Restart the program.
 
-After restarting, you will find the plugin easily accessible in the drop-down menu under **ImageJ: Plugins -> Background Remover**.
+After restarting, you will find the plugin easily accessible in the drop-down menu under<br>**ImageJ: Plugins -> Background Remover**.
 
 The file must be imported as either a single image or a stack. It is required that the image (or stack) is in 16-bit grayscale format. By default, the plugin is run for the active window.
 
@@ -69,7 +69,6 @@ These parameters include:
 ### Discrimination line parameters
 
 To separate the signal from the noise, the program uses an appropriately adjusted discrimination line represented by the following equation:
-
 $$
   y = a*x+b
 $$
@@ -298,6 +297,7 @@ Black points on white background preview
 <img alt="original_preview" src="img/orginal_preview.PNG"/><br/>
 The original intensity of signal points on the black background preview
 <br/>
+</p>
 
 <p align="center">
 <img alt="degree_of_matching_preview" src="img/degree_of_marching_preview.PNG"/><br/>
