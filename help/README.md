@@ -1,5 +1,9 @@
 # Background Remover Help
 
+Background Remover (BGR) is a plugin for the ImageJ platform that helps analyze fluorescence microscopy images with low signal-to-noise ratios and complex backgrounds.
+
+BGR uses a special algorithm to separate signal from noise, preserving the real signal while removing background interference. This improves the detection of variable brightness objects in poor imaging conditions. BGR also provides accurate intensity measurements of detected objects, making it useful for researchers needing quantitative analysis.
+
 ## Installation and introductory information
 
 To use the microscope image processing plugin for separating signal from noise, follow these steps:
@@ -17,7 +21,6 @@ The file must be imported as either a single image or a stack. It is required th
 Main window
 </p>
 
-
 The program offers two modes: automatic and manual. In automatic mode, you can either enter specific parameters into individual fields or load a previously saved set of parameters (referred to as a "Preset"). After clicking **OK** button, the program automatically searches for points and displays the resulting image in a new window. To switch to manual mode, click the **Interactive Parameters Tuning** button located in the upper left corner of the window.
 
 <p align="center">
@@ -25,9 +28,7 @@ The program offers two modes: automatic and manual. In automatic mode, you can e
 Interactive parameters tuning button
 </p>
 
-
 The plugin adds annotations about the operations performed on the file, which can be viewed by selecting **Image -> Show Info...**.
-
 
 <p align="center">
 <img alt="Annotations" src="img/annotations.PNG"/><br/>
@@ -55,7 +56,6 @@ Presets list
 
 Preliminary parameters determine the size of the scanning window and the approximate size of objects in the image.
 
-
 <p align="center">
 <img alt="main_window_preliminary" src="img/main_preliminary_param.PNG"/><br/>
 Preliminary parameters section
@@ -77,7 +77,6 @@ $$
 - **Slope** - slope coefficient of discrimination line(a);
 - **Y-Intercept** - the point of intersection of the discrimination line with the OY axis (b).
 
-
 <p align="center">
 <img alt="main_window_line" src="img/main_disc_line_param.PNG"/><br/>
 Discrimination line parameters section
@@ -92,7 +91,6 @@ If these parameters are unknown, they should be established in manual mode.
 Output parameters section
 </p>
 
-
 **Points** - points display options available in the drop-down list:
   - **White** - points displayed in white;
   - **Black** - points displayed in black;
@@ -102,12 +100,10 @@ Output parameters section
   - **Net signal (mode)** - the pixel value is determined by subtracting the background, which is calculated as the modal value of the pixel values in the surrounding area of a detected object;
   - **Net signal (median)** - the pixel value is determined by subtracting the background, which is calculated as the median of the pixel values in the surrounding area of a detected object.
 
-
 <p align="center">
 <img alt="output_points" src="img/main_signal_param.PNG"/><br/>
 Signal points types list
 </p>
-
 
 If one of the **Net signal** options is selected, two additional fields will appear for setting parameters:
 - **Skip pixels** - the difference between the radius of the object for which the background is calculated and the inner radius of the ring used for background value determination (N);
@@ -123,9 +119,7 @@ Net signal parameters explanation
 Net signal parameters
 </p>
 
-
 When one of the three versions of **Net signal** is selected, the **Output scale** option can also be chosen. Selecting **Original** preserves the original scale, while **Scaled** adjusts the pixel values to cover the entire display range, increasing the contrast of the image. However, it’s important to note that using the **Scaled** option can alter both the absolute and relative relationships between individual pixel values. Therefore, it is recommended to use this option mainly for visual purposes.
-
 
 <p align="center">
 <img alt="Net_vs_scaled" src="img/Net_vs_scaled.png"/><br/>
@@ -150,7 +144,6 @@ Additional options:
 
 ## Manual mode
 In manual mode, you can optimize both the input parameters and, most importantly, the parameters of the discrimination line. Manual mode operates on the currently active image or the active image in a stack. To switch to manual mode, click the "**Interactive Parameters Tuning**" button located in the upper right corner of the window.
-
 
 <p align="center">
 <img alt="main_window_interactive" src="img/main_inter_param_tuning_button.PNG"/><br/>
@@ -179,7 +172,6 @@ The **Discrimination Plot** window initially features only a chart template, whi
 <img alt="plot_empty" src="img/plot_empty.PNG"/><br/>
 Empty plot window
 </p>
-
 
 ### Algorithm for setting line and preliminary parameters
 
@@ -222,7 +214,6 @@ Background pixels plotted on the graph (blue points)
 Background pixels selected in the image transferred to the chart
 </p>
 
-
 #### Marking of signal points
 
 To switch from background selection mode to point selection mode, click the **Points Selection** button in the **Preview** window. When you do this, any selected background areas will disappear. To return to background selection mode, simply click the **Background Selection** button. 
@@ -247,7 +238,6 @@ To accurately define object boundaries, it is advisable to mark pixels near the 
 <img alt="points_selection_zoom" src="img/points_selection_zoom.PNG"/><br/>
 Example of marking a point on the boundary of an object
 </p>
-
 
 #### Establishing discrimination line parameters
 
@@ -274,19 +264,19 @@ To enable automatic adjustment of discrimination line parameters, a minimum of 5
 <p align="center">
 <img alt="discrimination_line_below_points" src="img/dicrimination_line_below_points.PNG"/><br/>
 Discrimination line fitted using <b>Below points</b> button
-<br/><br/><br/>
+<br/><br/>
 </p>
 
 <p align="center">
 <img alt="discrimination_line_middle" src="img/dicrimination_line_middle.PNG"/><br/>
 Discrimination line fitted using <b>Middle</b> button
-<br/><br/><br/>
+<br/><br/>
 </p>
 
 <p align="center">
 <img alt="discrimination_line_above_noise" src="img/dicrimination_line_above_noise.PNG"/><br/>
 Discrimination line fitted using <b>Above noise</b> button
-<br/><br/><br/>
+<br/><br/>
 </p>
 
 #### Determining the output parameters
@@ -296,31 +286,30 @@ The final stage involves determining the output parameters, specifically how sig
 <p align="center">
 <img alt="BW_preview" src="img/BW_preview.PNG"/><br/>
 White points on black background preview
-<br/><br/><br/>
+<br/><br/>
 </p>
 
 <p align="center">
 <img alt="WB_preview" src="img/WB_preview.PNG"/><br/>
 Black points on white background preview
-<br/><br/><br/>
+<br/><br/>
 </p>
 
 <p align="center">
 <img alt="original_preview" src="img/orginal_preview.PNG"/><br/>
 The original intensity of signal points on the black background preview
-<br/><br/><br/>
-</p>
+<br/><br/>
 
 <p align="center">
 <img alt="degree_of_matching_preview" src="img/degree_of_marching_preview.PNG"/><br/>
 Intensity of points showing the degree of matching of signal points on black background preview
-<br/><br/><br/>
+<br/><br/
 </p>
 
 <p align="center">
 <img alt="net_signal_median_preview" src="img/net_signal_median_preview.PNG"/><br/>
 Net signal of points (using median) on black background preview
-<br/><br/><br/>
+<br/><br/>
 </p>
 
 ### Pixels surrounding intensity profile window
