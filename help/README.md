@@ -264,19 +264,18 @@ To enable automatic adjustment of discrimination line parameters, a minimum of 5
 <p align="center">
 <img alt="discrimination_line_below_points" src="img/dicrimination_line_below_points.PNG"/><br/>
 Discrimination line fitted using <b>Below points</b> button
-<br/><br/>
+<br/>
 </p>
 
 <p align="center">
 <img alt="discrimination_line_middle" src="img/dicrimination_line_middle.PNG"/><br/>
 Discrimination line fitted using <b>Middle</b> button
-<br/><br/>
+<br/>
 </p>
 
 <p align="center">
 <img alt="discrimination_line_above_noise" src="img/dicrimination_line_above_noise.PNG"/><br/>
 Discrimination line fitted using <b>Above noise</b> button
-<br/><br/>
 </p>
 
 #### Determining the output parameters
@@ -286,30 +285,30 @@ The final stage involves determining the output parameters, specifically how sig
 <p align="center">
 <img alt="BW_preview" src="img/BW_preview.PNG"/><br/>
 White points on black background preview
-<br/><br/>
+<br/>
 </p>
 
 <p align="center">
 <img alt="WB_preview" src="img/WB_preview.PNG"/><br/>
 Black points on white background preview
-<br/><br/>
+<br/>
 </p>
 
 <p align="center">
 <img alt="original_preview" src="img/orginal_preview.PNG"/><br/>
 The original intensity of signal points on the black background preview
-<br/><br/>
+<br/>
 
 <p align="center">
 <img alt="degree_of_matching_preview" src="img/degree_of_marching_preview.PNG"/><br/>
 Intensity of points showing the degree of matching of signal points on black background preview
-<br/><br/
+<br/>
 </p>
 
 <p align="center">
 <img alt="net_signal_median_preview" src="img/net_signal_median_preview.PNG"/><br/>
 Net signal of points (using median) on black background preview
-<br/><br/>
+<br/>
 </p>
 
 ### Pixels surrounding intensity profile window
@@ -321,5 +320,4 @@ For detailed information on how these profiles are calculated, please refer to t
 <p align="center">
 <img alt="plot_profile" src="img/plot_profile.PNG"/><br/>
 Example of Pixel surrounding intensity profile window
-<br/><br/><br/>
 </p>
