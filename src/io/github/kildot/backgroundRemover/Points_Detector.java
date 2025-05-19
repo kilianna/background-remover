@@ -30,6 +30,8 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
     private TimerTask updatePointsTask;
     private Roi pointsRoi;
     private Roi noiseRoi;
+    private Roi sumRoi;
+    private int currentRoiType = Params.SELECT_NOISE;
 
     // Plot
     private Plot plot;
@@ -235,7 +237,10 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         public HashMap<Integer, Integer> valuesCount;
     }
 
-    private void calculateNetPointMarks(int startX, int startY, CalculateNetData d) {
+    private CalculateNetData calculateNetData;
+
+    private void calculateNetPointMarks(int startX, int startY) {
+        CalculateNetData d = calculateNetData;
         d.queueX[0] = (short)startX;
         d.queueY[0] = (short)startY;
         int queueFirst = 0;
@@ -280,7 +285,8 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         }
     }
 
-    private void calculateNetPointValue(int startX, int startY, CalculateNetData d) {
+    private void calculateNetPointValue(int startX, int startY) {
+        CalculateNetData d = calculateNetData;
         d.queueX[0] = (short)startX;
         d.queueY[0] = (short)startY;
         int queueSize = 1;
@@ -450,6 +456,7 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         int skipPixels = globalParams.skipPixels;
         int takePixels = globalParams.takePixels;
         CalculateNetData d = new CalculateNetData();
+        calculateNetData = d;
         d.netType = netType;
         d.results = results;
         d.diff = new float[width * height + 1];
@@ -479,14 +486,14 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (results[x + y * width] >= 0 && d.map[x + y * width] == 127) {
-                    calculateNetPointMarks(x, y, d);
+                    calculateNetPointMarks(x, y);
                 }
             }
         }
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (results[x + y * width] >= 0 && d.map[x + y * width] == 0) {
-                    calculateNetPointValue(x, y, d);
+                    calculateNetPointValue(x, y);
                 }
             }
         }
@@ -816,17 +823,24 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
     }
 
     private Roi getPointsRoi() {
-        if (!globalParams.selectNoise) {
+        if (globalParams.selectType == Params.SELECT_POINTS) {
             pointsRoi = previewImage.getRoi();
         }
         return pointsRoi;
     }
 
     private Roi getNoiseRoi() {
-        if (globalParams.selectNoise) {
+        if (globalParams.selectType == Params.SELECT_NOISE) {
             noiseRoi = previewImage.getRoi();
         }
         return noiseRoi;
+    }
+
+    private Roi getSumRoi() {
+        if (globalParams.selectType == Params.SELECT_SUM) {
+            sumRoi = previewImage.getRoi();
+        }
+        return sumRoi;
     }
 
     @Override
@@ -836,25 +850,31 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         logMethod();
         if (imp == previewImage && globalParams.interactive && id != RoiListener.DELETED) {
             //IJ.log("ROI MODIFIED - " + id);
-            if (globalParams.selectNoise) {
-                if (updateNoiseTask != null) {
-                    updateNoiseTask.cancel();
-                }
-                updateNoiseTask = Common.invokeLater(new Runnable() {
-                    public void run() {
-                        updateNoise();
+            switch (globalParams.selectType) {
+                case Params.SELECT_NOISE:
+                    if (updateNoiseTask != null) {
+                        updateNoiseTask.cancel();
                     }
-                }, 100);
-            } else {
-                if (updatePointsTask != null) {
-                    updatePointsTask.cancel();
-                }
-                updatePointsTask = Common.invokeLater(new Runnable() {
-                    public void run() {
-                        updatePoints(false);
+                    updateNoiseTask = Common.invokeLater(new Runnable() {
+                        public void run() {
+                            updateNoise();
+                        }
+                    }, 100);
+                    break;
+                case Params.SELECT_POINTS:
+                    if (updatePointsTask != null) {
+                        updatePointsTask.cancel();
                     }
-                }, 500, 500);
-                updatePoints(true);
+                    updatePointsTask = Common.invokeLater(new Runnable() {
+                        public void run() {
+                            updatePoints(false);
+                        }
+                    }, 500, 500);
+                    updatePoints(true);
+                    break;
+                case Params.SELECT_SUM:
+                    showSum();
+                    break;
             }
         } else {
             ImagePlus plotImage = plot.getImagePlus();
@@ -989,6 +1009,54 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         plot.setLimitsToFit(true);
         updateLimitLine();
         updateProfilePlot(profileY, profileIndex, false);
+    }
+
+    private void showSum()
+    {
+        int skipPixels = globalParams.skipPixels;
+        int takePixels = globalParams.takePixels;
+        if (calculateNetData == null) {
+            return;
+        }
+        CalculateNetData d = calculateNetData;
+        Roi roi = getSumRoi();
+        if (roi == null) {
+            return;
+        }
+        logMethod();
+        Point[] points = roi.getContainedPoints();
+        int[] h = new int[256];
+        int backgroundSum = 0;
+        int backgroundCount = 0;
+        for (int pointIndex = 0; pointIndex < points.length; pointIndex++) {
+            int x = points[pointIndex].x;
+            int y = points[pointIndex].y;
+            int dist = d.map[x + y * width];
+            h[dist]++;
+            if (dist > skipPixels && dist < 100)
+            {
+                backgroundSum += (int)d.inputPixels[x + y * width] & 0xFFFF;
+                backgroundCount++;
+            }
+        }
+        if (backgroundCount == 0) {
+            return;
+        }
+        float backgroundAvg = (float)backgroundSum / (float)backgroundCount;
+        float finalSum = 0.0f;
+        for (int pointIndex = 0; pointIndex < points.length; pointIndex++) {
+            int x = points[pointIndex].x;
+            int y = points[pointIndex].y;
+            int dist = d.map[x + y * width];
+            if (dist < 127) {
+                float value = (float)((int)d.inputPixels[x + y * width] & 0xFFFF) - backgroundAvg;
+                finalSum += value;
+            }
+        }
+        IJ.log("Sum: " + finalSum);
+        for (int i = 0; i < 129; i++) {
+            //IJ.log(i + ": " + h[i]);
+        }
     }
 
     private void updatePoints(boolean force) {
@@ -1173,7 +1241,7 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         }
 
         // Points/noise selection
-        if (updated(fields,Params.SELECT_NOISE)) {
+        if (updated(fields,Params.SELECT_TYPE)) {
             updateSelectionTool();
         }
     }
@@ -1238,20 +1306,42 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
     }
 
     private void updateSelectionTool() {
-        if (globalParams.selectNoise) {
-            IJ.setTool(Toolbar.OVAL);
-            pointsRoi = previewImage.getRoi();
-            previewImage.killRoi();
-            if (noiseRoi != null) {
-                previewImage.setRoi(noiseRoi);
-            }
-        } else {
-            IJ.setTool(Toolbar.POINT);
-            noiseRoi = previewImage.getRoi();
-            previewImage.killRoi();
-            if (pointsRoi != null) {
-                previewImage.setRoi(pointsRoi);
-            }
+        switch (currentRoiType) {
+            case Params.SELECT_NOISE:
+                noiseRoi = previewImage.getRoi();
+                break;
+            case Params.SELECT_POINTS:
+                pointsRoi = previewImage.getRoi();
+                break;
+            case Params.SELECT_SUM:
+                sumRoi = previewImage.getRoi();
+                break;
+        }
+        currentRoiType = globalParams.selectType;
+        switch (globalParams.selectType) {
+            case Params.SELECT_NOISE:
+                IJ.setTool(Toolbar.OVAL);
+                previewImage.killRoi();
+                if (noiseRoi != null) {
+                    previewImage.setRoi(noiseRoi);
+                }
+                break;
+            case Params.SELECT_POINTS:
+                IJ.setTool(Toolbar.POINT);
+                previewImage.killRoi();
+                if (pointsRoi != null) {
+                    previewImage.setRoi(pointsRoi);
+                }
+                break;
+            case Params.SELECT_SUM:
+                IJ.setTool(Toolbar.OVAL);
+                previewImage.killRoi();
+                if (sumRoi != null) {
+                    previewImage.setRoi(sumRoi);
+                }
+                break;
+            default:
+                break;
         }
     }
 

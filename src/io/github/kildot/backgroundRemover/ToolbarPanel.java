@@ -31,6 +31,7 @@ public class ToolbarPanel extends java.awt.Panel implements Params.Listener {
         selectionTypeGroup = new javax.swing.ButtonGroup();
         pointsSelection = new javax.swing.JToggleButton();
         noiseSelection = new javax.swing.JToggleButton();
+        sumSelection = new javax.swing.JToggleButton();
 
         selectionTypeGroup.add(pointsSelection);
         pointsSelection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/io/github/kildot/backgroundRemover/res/Point.png"))); // NOI18N
@@ -52,6 +53,15 @@ public class ToolbarPanel extends java.awt.Panel implements Params.Listener {
             }
         });
         add(noiseSelection);
+
+        selectionTypeGroup.add(sumSelection);
+        sumSelection.setText("Sum selection");
+        sumSelection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumSelectionparamActionPerformed(evt);
+            }
+        });
+        add(sumSelection);
     }// </editor-fold>//GEN-END:initComponents
 
     private void pointsSelectionparamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pointsSelectionparamActionPerformed
@@ -62,24 +72,32 @@ public class ToolbarPanel extends java.awt.Panel implements Params.Listener {
         updateState();
     }//GEN-LAST:event_noiseSelectionparamActionPerformed
 
+    private void sumSelectionparamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumSelectionparamActionPerformed
+        updateState();
+    }//GEN-LAST:event_sumSelectionparamActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton noiseSelection;
     private javax.swing.JToggleButton pointsSelection;
     private javax.swing.ButtonGroup selectionTypeGroup;
+    private javax.swing.JToggleButton sumSelection;
     // End of variables declaration//GEN-END:variables
 
     void updateState() {
         Params copy = globalParams.copy();
-        copy.selectNoise = noiseSelection.isSelected();
+        copy.selectType =
+            noiseSelection.isSelected() ? Params.SELECT_NOISE :
+            sumSelection.isSelected() ? Params.SELECT_SUM : Params.SELECT_POINTS;
         globalParams.set(copy, false, this);
     }
 
     @Override
     public void parametersChanged(long fields, boolean self) {
-        if (!self && (fields & Params.SELECT_NOISE) != 0) {
-            noiseSelection.setSelected(globalParams.selectNoise);
-            pointsSelection.setSelected(!globalParams.selectNoise);
+        if (!self && (fields & Params.SELECT_TYPE) != 0) {
+            noiseSelection.setSelected(globalParams.selectType == Params.SELECT_NOISE);
+            pointsSelection.setSelected(globalParams.selectType == Params.SELECT_POINTS);
+            sumSelection.setSelected(globalParams.selectType == Params.SELECT_SUM);
         }
     }
 

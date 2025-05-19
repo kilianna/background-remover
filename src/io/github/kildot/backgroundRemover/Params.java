@@ -17,6 +17,10 @@ import javax.swing.JOptionPane;
 
 public class Params {
 
+    static final int SELECT_NOISE = 0;
+    static final int SELECT_POINTS = 1;
+    static final int SELECT_SUM = 2;
+
     private static class V0 {
 
         static final int POINT_OUTPUT_WHITE = 0;
@@ -155,7 +159,7 @@ public class Params {
     public boolean addInputSlices;
 
     // Additional
-    public boolean selectNoise;
+    public int selectType;
     public boolean interactive;
     public boolean profileWindow;
 
@@ -177,7 +181,7 @@ public class Params {
 
     public static final long PERSISTENT_PARAMETERS_MASK = 0x1FFF;
 
-    public static final long SELECT_NOISE = 0x2000;
+    public static final long SELECT_TYPE = 0x2000;
     public static final long INTERACTIVE = 0x4000;
     public static final long PROFILE_WINDOW = 0x8000;
 
@@ -198,7 +202,7 @@ public class Params {
         allSlices = true;
         addInputSlices = false;
 
-        selectNoise = true;
+        selectType = SELECT_NOISE;
         interactive = false;
         profileWindow = false;
     }
@@ -222,7 +226,7 @@ public class Params {
 
         if (persistentOnly) return;
 
-        selectNoise = src.selectNoise;
+        selectType = src.selectType;
         interactive = src.interactive;
         profileWindow = src.profileWindow;
     }
@@ -246,7 +250,7 @@ public class Params {
         if (allSlices != src.allSlices) flags |= ALL_SLICES;
         if (addInputSlices != src.addInputSlices) flags |= ADD_INPUT_SLICES;
 
-        if (selectNoise != src.selectNoise) flags |= SELECT_NOISE;
+        if (selectType != src.selectType) flags |= SELECT_TYPE;
         if (interactive != src.interactive) flags |= INTERACTIVE;
         if (profileWindow != src.profileWindow) flags |= PROFILE_WINDOW;
 
@@ -272,7 +276,7 @@ public class Params {
         props.setProperty(prefix + "allSlices", Boolean.toString(allSlices));
         props.setProperty(prefix + "addInputSlices", Boolean.toString(addInputSlices));
 
-        // skip selectNoise
+        // skip selectType
         // skip interactive
         // skip profileWindow
 
@@ -320,8 +324,8 @@ public class Params {
             case "addInputSlices":
                 addInputSlices = Boolean.parseBoolean(value);
                 break;
-            case "selectNoise":
-                selectNoise = Boolean.parseBoolean(value);
+            case "selectType":
+                selectType = Integer.parseInt(value);
                 break;
             case "interactive":
                 interactive = Boolean.parseBoolean(value);
@@ -389,9 +393,6 @@ public class Params {
                 return true;
             case "addInputSlices":
                 addInputSlices = value;
-                return true;
-            case "selectNoise":
-                selectNoise = value;
                 return true;
             case "interactive":
                 interactive = value;
