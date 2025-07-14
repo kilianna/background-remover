@@ -6,4 +6,6 @@ Download link: [`BackgroundRemover.jar`](https://github.com/kilianna/background-
 
 Help link: [`Background Remover Help`](help/README.md)
 
+Manual movie: [`Background Remover - Optimized signal extraction for Low-SNR microscopy images`] (https://www.youtube.com/watch?v=I8ab4yOq8iU)
+
 Lastest development version: [`BackgroundRemover.jar`](https://github.com/kilianna/background-remover/raw/dev-binaries/BackgroundRemover.jar)
