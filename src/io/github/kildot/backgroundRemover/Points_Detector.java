@@ -122,6 +122,12 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
         int backgroundPixelOutput = globalParams.bgOutput;
         boolean keepOriginalSlices = globalParams.addInputSlices;
         ImageStack stack = sourceImage.getStack();
+        String newTitle = sourceImage.getTitle();
+        int dotIndex = newTitle.lastIndexOf('.');
+        if (dotIndex != -1) {
+            newTitle = newTitle.substring(0, dotIndex);
+        }
+        newTitle = newTitle + "_BGR";
         if (allSlices && stack != null && stack.size() > 1) {
             ImageStack is = new ImageStack(sourceImage.getWidth(), sourceImage.getHeight());
             for (int i = 1; i <= stack.size(); i++) {
@@ -132,18 +138,18 @@ public class Points_Detector implements PlugIn, RoiListener, Params.Listener {
                 if (keepOriginalSlices)
                     is.addSlice(r.original);
             }
-            outputImage = new ImagePlus("Output", is);
+            outputImage = new ImagePlus(newTitle, is);
         } else if (keepOriginalSlices) {
             ImageStack is = new ImageStack(sourceImage.getWidth(), sourceImage.getHeight());
             ProcessingResults r = processSingleImage(sourceImage.getProcessor(), pointPixelOutput, pointScaled, backgroundPixelOutput,
                     keepOriginalSlices, 0, 1);
             is.addSlice(r.result);
             is.addSlice(r.original);
-            outputImage = new ImagePlus("Output", is);
+            outputImage = new ImagePlus(newTitle, is);
         } else {
             ImageProcessor r = processSingleImage(sourceImage.getProcessor(), pointPixelOutput, pointScaled, backgroundPixelOutput,
                     keepOriginalSlices, 0, 1).result;
-            outputImage = new ImagePlus("Output", r);
+            outputImage = new ImagePlus(newTitle, r);
         }
         Utils.addProcessingInfo(sourceImage, outputImage, "Points Detector: " + globalParams.toString());
         if (globalParams.resetDisplayRange) {
